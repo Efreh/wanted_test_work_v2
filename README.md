@@ -9,7 +9,7 @@
 
 <summary><h2>Бонус</h2></summary>
 Решение задачи 2.2 с помощью YaGptApi
-`src/main/java/tasks/moneyParserYGPTApi.java`
+`src/main/java/tasks/MoneyParserYGPTApi.java`
 
 
 ### Задание 1 (SQL):

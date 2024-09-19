@@ -13,7 +13,7 @@ import static tasks.moneyParserYGPTApi.run;
 
 // Небольшой бонус =)
 
-public class moneyParserYGPTApi {
+public class MoneyParserYGPTApi {
 
     private static final String URL = "https://llm.api.cloud.yandex.net/foundationModels/v1/completion";
     private static final String IAM_TOKEN = "token";
@@ -57,7 +57,7 @@ public class moneyParserYGPTApi {
     }
 }
 
-class moneyParserYGPTApiTest {
+class MoneyParserYGPTApiTest {
     public static void main(String[] args) throws Exception {
         System.out.println(run("1878.98"));
     }

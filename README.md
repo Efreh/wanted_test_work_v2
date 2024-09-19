@@ -6,6 +6,12 @@
 
 ## Описание задания:
 
+
+<summary><h2>Бонус</h2></summary>
+Решение задачи 2.2 с помощью YaGptApi
+`src/main/java/tasks/moneyParserYGPTApi.java`
+
+
 ### Задание 1 (SQL):
 Имеется две таблицы:
 - `HPPersonGeneric` – таблица с персональными данными сотрудников и их родственников.

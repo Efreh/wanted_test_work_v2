@@ -37,6 +37,7 @@ public class SellersListDate {
         return shipDate;
     }
 
+    //Рекурсию можно заменить на цикл
     public Date getVacCheck(Date modDate) {
         LocalDate date = modDate.toLocalDate();
         if (date.getDayOfWeek().getValue() >= 1 && date.getDayOfWeek().getValue() <= 5) {

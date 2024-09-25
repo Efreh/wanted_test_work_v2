@@ -12,18 +12,29 @@ import java.math.BigInteger;
 
 public class MoneyParser {
 
+    //Массивы прописных значений
     private final String[] BEFORE_TWENTY =
             {"ноль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", "десять",
                     "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
-    private final String[] BEFORE_TWENTY_KOP = {"","одна", "две"};
+    private final String[] BEFORE_TWENTY_KOP = {"", "одна", "две"};
     private final String[] TENS = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
     private final String[] HUNDREDS = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
     private final String[] THOUSANDS = {"", "одна тысяча", "две тысячи", "три тысячи", "четыре тысячи", "пять тысяч", "шесть тысяч", "семь тысяч", "восемь тысяч", "девять тысяч"};
 
     public String priceAlphabeticView(BigDecimal price) {
+        if (price.compareTo(BigDecimal.ZERO) < 0) {
+            return "Неверное значение : введите положительное число";
+        }
 
         BigInteger wholePart = price.toBigInteger();
+        if (wholePart.compareTo(BigInteger.valueOf(100000)) >=0){
+            return "Целая часть больше лимита в \"99999\"";
+        }
+
         BigInteger decimalPart = price.remainder(BigDecimal.ONE).unscaledValue();
+        if (decimalPart.compareTo(BigInteger.valueOf(100)) >=0){
+            return "Дробная часть больше лимита в \"99\"";
+        }
 
         return numParserWhole(wholePart) + " " + numParserDecimal(decimalPart);
     }
@@ -135,10 +146,12 @@ public class MoneyParser {
         }
 
         int decimalTwoLastNum = num.mod(BigInteger.valueOf(100)).intValue();
-        if (decimalTwoLastNum >= 11 && decimalTwoLastNum <= 19) {
+        if (decimalTwoLastNum >= 10 && decimalTwoLastNum <= 20) {
             result.append(" копеек");
         } else {
             switch (num.mod(BigInteger.TEN).intValue()) {
+                case 0:
+                    break;
                 case 1:
                     result.append(" копейка");
                     break;
@@ -157,6 +170,6 @@ public class MoneyParser {
 
 class MoneyParserTest {
     public static void main(String[] args) {
-        System.out.println(new MoneyParser().priceAlphabeticView(new BigDecimal("45361.99")));
+        System.out.println(new MoneyParser().priceAlphabeticView(new BigDecimal("586.20")));
     }
 }
